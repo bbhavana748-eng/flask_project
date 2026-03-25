@@ -14,19 +14,10 @@ def get_data():
     with open('data.json') as f:
         data = json.load(f)
     return jsonify(data)
-
 @app.route('/', methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
-        try:
-            data = {
-                "name": request.form['name'],
-                "email": request.form['email']
-            }
-            collection.insert_one(data)
-            return redirect(url_for('success'))
-        except Exception as e:
-            return str(e)
+        return redirect(url_for('success'))
     return render_template('form.html')
 
 @app.route('/success')
